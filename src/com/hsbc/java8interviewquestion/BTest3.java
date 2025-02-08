@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class BTest3 {
 
@@ -15,13 +16,8 @@ public class BTest3 {
 
 		// Using Sets to keep track of seen elements and duplicates
 		Set<Integer> seen = new HashSet<>();
-		Set<Integer> duplicates = new HashSet<>();
 
-		for (Integer integer : duplicateList) {
-			if (seen.add(integer)) {
-				duplicates.add(integer);
-			}
-		}
-
+		List<Integer> filteredList = duplicateList.stream().filter(n -> !seen.add(n)).collect(Collectors.toList());
+		System.out.println(filteredList);
 	}
 }
